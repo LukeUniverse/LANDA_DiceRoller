@@ -1,0 +1,119 @@
+[gd_scene load_steps=4 format=3 uid="uid://bght5agt8doju"]
+
+[ext_resource type="Texture2D" uid="uid://d2kr6a6fblttd" path="res://ArtAssets/WhiteSqaure.png" id="1_a7jbv"]
+[ext_resource type="Script" path="res://Scripts/main_scene.gd" id="1_tmy8i"]
+[ext_resource type="Script" path="res://Scripts/D4Script.gd" id="2_mjxb4"]
+
+[node name="Node2D_MainNode" type="Node2D"]
+script = ExtResource("1_tmy8i")
+
+[node name="Sprite2D_YellowBackground" type="Sprite2D" parent="."]
+self_modulate = Color(0.972549, 0.858824, 0.690196, 1)
+position = Vector2(960, 540)
+scale = Vector2(19.2, 10.8)
+texture = ExtResource("1_a7jbv")
+
+[node name="Sprite2D_BlackOutline" type="Sprite2D" parent="Sprite2D_YellowBackground"]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.95, 0.9)
+texture = ExtResource("1_a7jbv")
+
+[node name="Sprite2D_WhiteCenter" type="Sprite2D" parent="Sprite2D_YellowBackground/Sprite2D_BlackOutline"]
+scale = Vector2(0.98, 0.88)
+texture = ExtResource("1_a7jbv")
+
+[node name="Label" type="Label" parent="Sprite2D_YellowBackground/Sprite2D_BlackOutline"]
+top_level = true
+offset_left = 786.0
+offset_top = 59.0
+offset_right = 1239.0
+offset_bottom = 114.0
+theme_override_font_sizes/font_size = 40
+text = "Luke  & Alex Dice Roller
+"
+
+[node name="Button_Close" type="Button" parent="."]
+offset_left = 1862.0
+offset_right = 1920.0
+offset_bottom = 50.0
+text = "CLOSE"
+
+[node name="Node2D_ColumnHeadersGroup" type="Node2D" parent="."]
+
+[node name="Label_Die" type="Label" parent="Node2D_ColumnHeadersGroup"]
+offset_left = 100.0
+offset_top = 125.0
+offset_right = 268.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Die"
+
+[node name="Label_Nbr" type="Label" parent="Node2D_ColumnHeadersGroup"]
+offset_left = 210.0
+offset_top = 125.0
+offset_right = 378.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Nbr"
+
+[node name="Label_Modifier" type="Label" parent="Node2D_ColumnHeadersGroup"]
+offset_left = 400.0
+offset_top = 125.0
+offset_right = 568.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Modifier"
+
+[node name="Label_Results" type="Label" parent="Node2D_ColumnHeadersGroup"]
+offset_left = 800.0
+offset_top = 125.0
+offset_right = 968.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Results"
+
+[node name="Node2D_D4Area" type="Node2D" parent="."]
+position = Vector2(0, 200)
+script = ExtResource("2_mjxb4")
+
+[node name="Label_DieSize" type="Label" parent="Node2D_D4Area"]
+offset_left = 100.0
+offset_right = 200.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "d4"
+
+[node name="TextEdit_Count" type="TextEdit" parent="Node2D_D4Area"]
+offset_left = 200.0
+offset_right = 350.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 45
+placeholder_text = "###"
+
+[node name="TextEdit_Modifier" type="TextEdit" parent="Node2D_D4Area"]
+offset_left = 400.0
+offset_right = 550.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 45
+placeholder_text = "0"
+
+[node name="Button_Roll" type="Button" parent="Node2D_D4Area"]
+offset_left = 600.0
+offset_right = 750.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 45
+text = "Roll!"
+
+[node name="TextEdit_Result" type="TextEdit" parent="Node2D_D4Area"]
+offset_left = 803.0
+offset_right = 953.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 45
+
+[connection signal="pressed" from="Button_Close" to="." method="Button_Close_Pressed"]
+[connection signal="pressed" from="Node2D_D4Area/Button_Roll" to="Node2D_D4Area" method="Button_D4Roll_Pressed"]
